@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:simple_to_do/models/todo.dart';
+
 import 'package:simple_to_do/views/todo_list.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(TodoAdapter());
+  Box todoBox = await Hive.openBox('todo');
+  runApp(MyApp(todoBox));
 }
 
 class MyApp extends StatelessWidget {
+  Box hiveBox;
+
+  MyApp(this.hiveBox);
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -27,7 +37,7 @@ class MyApp extends StatelessWidget {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: TodoListPage(),
+      home: TodoListPage(hiveBox),
     );
   }
 }
