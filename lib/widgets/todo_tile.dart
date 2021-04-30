@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_to_do/models/tag.dart';
 import 'package:simple_to_do/models/todo.dart';
 
 class TodoTile extends StatefulWidget {
@@ -25,14 +24,14 @@ class _TodoTileState extends State<TodoTile> {
       children: [
         Row(
           children: [
-            Text(todo.progress.toString()),
+            Text(todo.routineCount.toString()),
             Text(todo.name),
           ],
         ),
         Row(
           children: [
             Text(todo.createdAt.toString()),
-            Text(todo.expiredAt.toString()),
+            Text(todo.doneAt.toString()),
           ],
         )
       ],

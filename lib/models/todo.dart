@@ -1,6 +1,6 @@
+import 'dart:ui';
 import 'package:hive/hive.dart';
 import 'package:simple_to_do/constants/enums.dart';
-import 'package:simple_to_do/models/tag.dart';
 
 @HiveType(typeId: 0)
 class Todo extends HiveObject {
@@ -11,31 +11,31 @@ class Todo extends HiveObject {
   @HiveField(2)
   TodoState state;
   @HiveField(3)
-  int progress;
+  int routineCount;
   @HiveField(4)
   DateTime createdAt;
   @HiveField(5)
-  DateTime expiredAt;
+  DateTime doneAt;
   @HiveField(6)
-  List<Todo> children;
+  Color color;
 
   Todo(
       {this.id,
       this.name,
       this.state,
-      this.progress,
+      this.routineCount,
       this.createdAt,
-      this.expiredAt,
-      this.children});
+      this.doneAt,
+      this.color});
 
   Todo.readError() {
     this.id = null;
     this.name = null;
     this.state = TodoState.readError;
-    this.progress = null;
+    this.routineCount = null;
     this.createdAt = null;
-    this.expiredAt = null;
-    this.children = null;
+    this.doneAt = null;
+    this.color = null;
   }
 
 //   Map<String, dynamic> toMap() => {
@@ -43,9 +43,9 @@ class Todo extends HiveObject {
 //         'name': name,
 //         'tags': tags,
 //         'state': state,
-//         'progress': progress,
+//         'routineCount': routineCount,
 //         'createdAt': createdAt,
-//         'expiredAt': expiredAt,
+//         'doneAt': doneAt,
 //         'children': children
 //       };
 }
@@ -60,10 +60,10 @@ class TodoAdapter extends TypeAdapter<Todo> {
       ..id = reader.read()
       ..name = reader.read()
       ..state = reader.read()
-      ..progress = reader.read()
+      ..routineCount = reader.read()
       ..createdAt = reader.read()
-      ..expiredAt = reader.read()
-      ..children = reader.read();
+      ..doneAt = reader.read()
+      ..color = reader.read();
   }
 
   @override
@@ -71,9 +71,9 @@ class TodoAdapter extends TypeAdapter<Todo> {
     writer.write(todo.id);
     writer.write(todo.name);
     writer.write(todo.state);
-    writer.write(todo.progress);
+    writer.write(todo.routineCount);
     writer.write(todo.createdAt);
-    writer.write(todo.expiredAt);
-    writer.write(todo.children);
+    writer.write(todo.doneAt);
+    writer.write(todo.color);
   }
 }

@@ -1,7 +1,5 @@
 import 'package:hive/hive.dart';
 import 'package:simple_to_do/constants/enums.dart';
-import 'package:simple_to_do/models/tag.dart';
-
 import 'package:simple_to_do/models/todo.dart';
 
 class HiveService {
@@ -15,9 +13,8 @@ class HiveService {
   void updateTodo(int id,
       {String name,
       TodoState state,
-      int progress,
-      List<TodoTag> tags,
-      DateTime expiredAt,
+      int routineCount,
+      DateTime doneAt,
       List<Todo> children}) {
     Todo target = box.get(id);
     if (target == null) {
@@ -26,10 +23,8 @@ class HiveService {
 
     target.name = name ?? target.name;
     target.state = state ?? target.state;
-    target.progress = progress ?? target.progress;
-    target.expiredAt = expiredAt ?? target.expiredAt;
-    target.children = children ?? target.children;
-
+    target.routineCount = routineCount ?? target.routineCount;
+    target.doneAt = doneAt ?? target.doneAt;
     target.save();
   }
 

@@ -24,14 +24,12 @@ class _TodoListPageState extends State<TodoListPage> {
   void initState() {
     super.initState();
     this.hive = HiveService(hiveBox);
-    // this.todoList = hive.getAllTodo();
     this.todoList = [
       Todo(
-          children: [],
           createdAt: DateTime.now(),
-          expiredAt: DateTime.now(),
-          progress: 50,
-          state: TodoState.doing,
+          doneAt: DateTime.now(),
+          routineCount: 50,
+          state: TodoState.todo,
           name: "eat con cheese",
           id: 0)
     ];

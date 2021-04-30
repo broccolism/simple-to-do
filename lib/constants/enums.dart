@@ -1,1 +1,1 @@
-enum TodoState { readError, todo, doing, done }
+enum TodoState { readError, todo, done }
